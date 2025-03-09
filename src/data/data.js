@@ -38,8 +38,8 @@ const themeData = {
 const linkData = [
   {
     id: 1,
-    link: "https://play.google.com/store/apps/details?id=com.vs.meetly&hl=en_IN&gl=US",
-    name: "Meetly - Conferencing App",
+    link: "https://fetlife.com/profile",
+    name: "Fetlife Profile",
     image: "https://cdn.vshetty.dev/DevResume/meetly.webp",
   },
   {
@@ -53,67 +53,7 @@ const linkData = [
     link: "https://github.com/vigneshshettyin/EatMyURL",
     name: "EatMyUrl - A URL Shortener App",
     image: "https://cdn.vshetty.dev/DevResume/project.gif",
-  },
-  {
-    id: 4,
-    link: "https://github.com/vigneshshettyin/Bulk-Mailer",
-    name: "BulkMailer - Free Bulk Mailer App",
-    image: "https://cdn.vshetty.dev/DevResume/project.gif",
-  },
-  {
-    id: 5,
-    link: "https://tesla-clone-6820b.web.app",
-    name: "Tesla UI Clone Using React.JS",
-    image: "https://cdn.vshetty.dev/DevResume/project.gif",
-  },
-  {
-    id: 6,
-    link: "https://github.com/vigneshshettyin/Web-Scraper",
-    name: "Flask S.E.O Scrapper / API",
-    image: "https://cdn.vshetty.dev/DevResume/project.gif",
-  },
-  {
-    id: 7,
-    link: "https://fervent-cray-ead198.netlify.app",
-    name: "Python Flask - Blogging Application",
-    image: "https://cdn.vshetty.dev/DevResume/project.gif",
-  },
-  {
-    id: 8,
-    link: "https://github.com/vigneshshettyin/RestFul-Blog",
-    name: "MERN - Blogging Application",
-    image: "https://cdn.vshetty.dev/DevResume/project.gif",
-  },
-  {
-    id: 9,
-    link: "https://quizzical-pike-e7098a.netlify.app",
-    name: "Minified React Apps",
-    image: "https://cdn.vshetty.dev/DevResume/project.gif",
-  },
-  {
-    id: 10,
-    link: "https://blogs.vshetty.dev/quick-guide-to-deploy-using-docker",
-    name: "Quick Guide To Deploy Using Docker",
-    image: "https://cdn.vshetty.dev/DevResume/blog.png",
-  },
-  {
-    id: 11,
-    link: "https://blogs.vshetty.dev/create-linktree-clone",
-    name: "Create Linktree Clone",
-    image: "https://cdn.vshetty.dev/DevResume/blog.png",
-  },
-  {
-    id: 12,
-    link: "https://blogs.vshetty.dev/docker-for-production-build",
-    name: "Docker For Production Build",
-    image: "https://cdn.vshetty.dev/DevResume/blog.png",
-  },
-    {
-    id: 13,
-    link: "https://blogs.vshetty.dev/clickhouse-decoded-high-cardinality-use-case",
-    name: "ClickHouse Decoded: High Cardinality Use case",
-    image: "https://cdn.vshetty.dev/DevResume/blog.png",
-  },
+  }
 ];
 
 export { socialLinks, profileData, linkData, themeData };
