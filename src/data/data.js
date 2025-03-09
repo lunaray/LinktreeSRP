@@ -7,7 +7,7 @@ const socialLinks = [
 ];
 const profileData = {
   userName: "Silver Tongue",
-  photoLink: "https://github.com/vigneshshettyin.png",
+  photoLink: "public/u2000.jpg",
   desc: "Rope Expert",
   about:
     "Unlock unprecedented speed and reliability with a backend wizard renowned for transforming sluggish query response times into lightning-fast results. Let's team up and revolutionize your backend operations with unparalleled efficiency and performance optimization.",
@@ -38,9 +38,9 @@ const themeData = {
 const linkData = [
   {
     id: 1,
-    link: "https://fetlife.com/profile",
+    link: "https://fetlife.com/users/14674678",
     name: "Fetlife Profile",
-    image: "https://cdn.vshetty.dev/DevResume/meetly.webp",
+    image: "public/fetlife.svg",
   },
   {
     id: 2,
