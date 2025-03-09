@@ -23,7 +23,7 @@ const Footer = () => {
       <div className="bottom">
         <hr />
         <FooterContainer>
-          {socialLinks.map((link, index) => {
+          {/* {socialLinks.map((link, index) => {
             return (
               <FooterContent key={index}>
                 <SocialIcon
@@ -33,7 +33,7 @@ const Footer = () => {
                 />
               </FooterContent>
             );
-          })}
+          })} */}
         </FooterContainer>
       </div>
     </>
