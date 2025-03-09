@@ -14,7 +14,7 @@ const Link = () => {
           <CustomDiv
             id="divHoverExpand"
             className="shadow"
-            props={a.darkMode ? themeData.light : themeData.dark}
+            props={a.darkMode ? themeData.dark : themeData.light}
             onClick={() => {
               window.open(item.link, "_blank");
             }}

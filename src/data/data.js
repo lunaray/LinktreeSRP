@@ -3,7 +3,7 @@ const socialLinks = [
 ];
 const profileData = {
   userName: "Silver Tongue",
-  photoLink: "public/u2000.jpg",
+  photoLink: "/u2000.jpg",
   desc: "Rope Expert",
   about:
     "Unlock unprecedented speed and reliability with a backend wizard renowned for transforming sluggish query response times into lightning-fast results. Let's team up and revolutionize your backend operations with unparalleled efficiency and performance optimization.",
@@ -36,13 +36,13 @@ const linkData = [
     id: 1,
     link: "https://fetlife.com/users/14674678",
     name: "Fetlife Profile",
-    image: "public/fetlife.svg",
+    image: "/fetlife.svg",
   },
   {
     id: 2,
     link: "https://fetlife.com/users/21291521",
     name: "Rope Snakes",
-    image: "public/fetlife.svg",
+    image: "/fetlife.svg",
   }
 ];
 
