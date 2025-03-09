@@ -1,9 +1,5 @@
 const socialLinks = [
-  "https://github.com/vigneshshettyin",
-  "https://linkedin.com/in/vigneshshettyin",
-  "https://twitter.com/vigneshshettyin",
-  "https://instagram.com/vigneshshettyin",
-  "https://facebook.com/vigneshshettyin",
+  "https://github.com/vigneshshettyin"
 ];
 const profileData = {
   userName: "Silver Tongue",
@@ -44,15 +40,9 @@ const linkData = [
   },
   {
     id: 2,
-    link: "https://github.com/vigneshshettyin/Flask-Generate-Certificate",
-    name: "Certify - Certificate Generator App",
-    image: "https://cdn.vshetty.dev/DevResume/certify.png",
-  },
-  {
-    id: 3,
-    link: "https://github.com/vigneshshettyin/EatMyURL",
-    name: "EatMyUrl - A URL Shortener App",
-    image: "https://cdn.vshetty.dev/DevResume/project.gif",
+    link: "https://fetlife.com/users/21291521",
+    name: "Rope Snakes",
+    image: "public/fetlife.svg",
   }
 ];
 
