@@ -6,7 +6,7 @@ const profileData = {
   photoLink: "/u2000.jpg",
   desc: "Rope Expert",
   about:
-    "Unlock unprecedented speed and reliability with a backend wizard renowned for transforming sluggish query response times into lightning-fast results. Let's team up and revolutionize your backend operations with unparalleled efficiency and performance optimization.",
+    "Professional rope professional.",
 };
 
 const themeData = {
