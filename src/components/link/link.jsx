@@ -1,15 +1,19 @@
 import styled from "styled-components";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import { useContext } from "react";
+import { useContext, lazy, Suspense } from "react";
 import themeContext from "../../state/context/themeContext";
 import { SocialIcon } from "react-social-icons";
-import * as LucideIcons from "lucide-react";
 import "react-lazy-load-image-component/src/effects/blur.css";
+
+const LucideIconRenderer = lazy(() => import("./LucideIconRenderer"));
 
 const LinkIcon = ({ item }) => {
   if (item.icon_type === "lucide" && item.icon_value) {
-    const Icon = LucideIcons[item.icon_value];
-    if (Icon) return <Icon size={40} style={{ margin: "5px 10px" }} />;
+    return (
+      <Suspense fallback={null}>
+        <LucideIconRenderer name={item.icon_value} size={40} style={{ margin: "5px 10px" }} />
+      </Suspense>
+    );
   }
   if (item.icon_type === "url" && item.icon_value) {
     return (
