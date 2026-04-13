@@ -56,10 +56,31 @@ if (stderr && !existsSync(zipPath)) {
 }
 
 console.log('📂  Extracting...');
-await execAsync(`unzip -o "${zipPath}" pocketbase -d "${__dirname}" 2>&1`).catch(async () => {
-  // Windows fallback
-  await execAsync(`unzip -o "${zipPath}" -d "${__dirname}"`);
-});
+
+// Try extraction methods in order: unzip → python3 → python → PowerShell (Windows)
+const extractors = [
+  `unzip -o "${zipPath}" pocketbase -d "${__dirname}"`,
+  `python3 -c "import zipfile, os; zipfile.ZipFile('${zipPath}').extract('pocketbase', '${__dirname}'); os.chmod('${binaryPath}', 0o755)"`,
+  `python  -c "import zipfile, os; zipfile.ZipFile('${zipPath}').extract('pocketbase', '${__dirname}'); os.chmod('${binaryPath}', 0o755)"`,
+  `powershell -Command "Expand-Archive -Force '${zipPath}' '${__dirname}'"`,
+];
+
+let extracted = false;
+for (const cmd of extractors) {
+  try {
+    await execAsync(cmd);
+    extracted = true;
+    break;
+  } catch {
+    // try next
+  }
+}
+
+if (!extracted) {
+  console.error('❌  Could not extract zip. Install unzip or python3 and try again:');
+  console.error('    apt-get install unzip   OR   apk add unzip');
+  process.exit(1);
+}
 
 // Cleanup
 await execAsync(`rm -f "${zipPath}" "${join(__dirname, 'CHANGELOG.md')}" "${join(__dirname, 'LICENSE.md')}"`)
