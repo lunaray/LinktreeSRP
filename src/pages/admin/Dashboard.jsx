@@ -51,9 +51,10 @@ const Dashboard = () => {
 
       <Main>
         <MainInner>
-          {tab === "links" && <LinkEditor />}
-          {tab === "profile" && <ProfileEditor />}
-          {tab === "theme" && <ThemeEditor />}
+          {/* Keep all panels mounted — only hide with CSS so state survives tab switches */}
+          <TabPanel $visible={tab === "links"}><LinkEditor /></TabPanel>
+          <TabPanel $visible={tab === "profile"}><ProfileEditor /></TabPanel>
+          <TabPanel $visible={tab === "theme"}><ThemeEditor /></TabPanel>
         </MainInner>
       </Main>
     </Page>
@@ -133,4 +134,8 @@ const MainInner = styled.div`
   margin: 0 auto;
   padding: 2.5rem 2rem;
   @media (max-width: 600px) { padding: 1.5rem 1rem; }
+`;
+
+const TabPanel = styled.div`
+  display: ${(p) => (p.$visible ? "block" : "none")};
 `;
