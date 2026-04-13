@@ -15,7 +15,7 @@
 
 import PocketBase from '../node_modules/pocketbase/dist/pocketbase.es.mjs';
 
-const PB_URL = 'http://127.0.0.1:8090';
+const PB_URL = process.env.PB_URL || 'http://127.0.0.1:8090';
 const ADMIN_EMAIL = process.env.PB_EMAIL || 'admin@example.com';
 const ADMIN_PASSWORD = process.env.PB_PASSWORD;
 
