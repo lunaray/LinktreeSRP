@@ -1,12 +1,23 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, Component } from "react";
 import styled from "styled-components";
 import { SocialIcon } from "react-social-icons";
 import * as LucideIcons from "lucide-react";
-import { Search } from "lucide-react";
+import { Search, Link } from "lucide-react";
 
 const LUCIDE_NAMES = Object.keys(LucideIcons).filter(
   (k) => k !== "createLucideIcon" && k !== "default" && typeof LucideIcons[k] === "function"
 );
+
+// react-social-icons throws on unrecognized URLs — catch it gracefully
+class SocialIconSafe extends Component {
+  constructor(props) { super(props); this.state = { error: false }; }
+  static getDerivedStateFromError() { return { error: true }; }
+  render() {
+    if (this.state.error)
+      return <Muted style={{ display: "flex", alignItems: "center", gap: "0.4rem" }}><Link size={20} /> No icon found for this URL</Muted>;
+    return <SocialIcon url={this.props.url} style={{ width: 48, height: 48 }} />;
+  }
+}
 
 const IconPicker = ({ iconType, iconValue, url, onChange }) => {
   const [lucideSearch, setLucideSearch] = useState("");
@@ -20,22 +31,25 @@ const IconPicker = ({ iconType, iconValue, url, onChange }) => {
     [lucideSearch]
   );
 
-  const handleTypeChange = (type) => onChange({ iconType: type, iconValue: "" });
+  const handleTypeChange = (e, type) => {
+    e.preventDefault();
+    onChange({ iconType: type, iconValue: "" });
+  };
 
   const SelectedLucideIcon = iconType === "lucide" && iconValue ? LucideIcons[iconValue] : null;
 
   return (
     <Wrapper>
       <TypeRow>
-        <TypeBtn $active={iconType === "auto"} onClick={() => handleTypeChange("auto")}>Auto-detect</TypeBtn>
-        <TypeBtn $active={iconType === "lucide"} onClick={() => handleTypeChange("lucide")}>Lucide Icon</TypeBtn>
-        <TypeBtn $active={iconType === "url"} onClick={() => handleTypeChange("url")}>Image URL</TypeBtn>
+        <TypeBtn type="button" $active={iconType === "auto"} onClick={(e) => handleTypeChange(e, "auto")}>Auto-detect</TypeBtn>
+        <TypeBtn type="button" $active={iconType === "lucide"} onClick={(e) => handleTypeChange(e, "lucide")}>Lucide Icon</TypeBtn>
+        <TypeBtn type="button" $active={iconType === "url"} onClick={(e) => handleTypeChange(e, "url")}>Image URL</TypeBtn>
       </TypeRow>
 
       {iconType === "auto" && (
         <Preview>
           {url ? (
-            <SocialIcon url={url} style={{ width: 48, height: 48 }} />
+            <SocialIconSafe url={url} />
           ) : (
             <Muted>Enter a URL above to auto-detect the icon</Muted>
           )}
@@ -53,7 +67,7 @@ const IconPicker = ({ iconType, iconValue, url, onChange }) => {
             ) : (
               <Muted>No icon selected</Muted>
             )}
-            <PickerToggle onClick={() => setShowLucideGrid((v) => !v)}>
+            <PickerToggle type="button" onClick={() => setShowLucideGrid((v) => !v)}>
               {showLucideGrid ? "Close" : "Pick Icon"}
             </PickerToggle>
           </LucidePreviewRow>
@@ -73,6 +87,7 @@ const IconPicker = ({ iconType, iconValue, url, onChange }) => {
                   return (
                     <GridItem
                       key={name}
+                      type="button"
                       $selected={iconValue === name}
                       title={name}
                       onClick={() => {
