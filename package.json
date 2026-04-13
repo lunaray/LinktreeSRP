@@ -8,7 +8,8 @@
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "pb": "cd pb && ./pocketbase serve",
+    "pb:download": "node pb/download-pb.mjs",
+    "pb": "node pb/download-pb.mjs && cd pb && ./pocketbase serve",
     "dev:all": "concurrently -n vite,pb -c cyan,yellow 'npm run dev' 'npm run pb'"
   },
   "dependencies": {
