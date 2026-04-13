@@ -1,36 +1,28 @@
 import { useContext } from "react";
 import styled from "styled-components";
-import { profileData, themeData } from "../../data/data";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import DarkModeToggle from "react-dark-mode-toggle";
 import themeContext from "../../state/context/themeContext";
 import "react-lazy-load-image-component/src/effects/blur.css";
 
-const Header = () => {
-  const a = useContext(themeContext);
-  const { userName, photoLink, desc, about } = profileData;
-  
-  // Fixed logic here
-  if (a.darkMode) {
-    document.body.style.backgroundColor = themeData.dark.backgroundColor;
-  } else {
-    document.body.style.backgroundColor = themeData.light.backgroundColor;
-  }
+const Header = ({ profile = {} }) => {
+  const { darkMode, setDarkMode, themeData } = useContext(themeContext);
+  const { userName = "", photoLink = "", desc = "", about = "" } = profile;
+  const theme = darkMode ? themeData.dark : themeData.light;
+
+  document.body.style.backgroundColor = theme.backgroundColor;
+  document.body.style.fontFamily = themeData.font ? `'${themeData.font}', sans-serif` : "inherit";
 
   return (
     <>
-      <DarkMode onChange={a.setDarkMode} checked={a.darkMode} size={50} />
+      <DarkMode onChange={setDarkMode} checked={darkMode} size={50} />
       <HeaderWrapper>
-        <CustomImage draggable={false} effect="blur" src={photoLink} />
-        <UserNameText props={a.darkMode ? themeData.dark : themeData.light}>
-          @{userName}
-        </UserNameText>
-        <UserNameText props={a.darkMode ? themeData.dark : themeData.light}>
-          {desc}
-        </UserNameText>
-        <TextWrapPara props={a.darkMode ? themeData.dark : themeData.light}>
-          {about}
-        </TextWrapPara>
+        {photoLink && (
+          <CustomImage draggable={false} effect="blur" src={photoLink} alt="profile" />
+        )}
+        <UserNameText $color={theme.headerFontColor}>@{userName}</UserNameText>
+        <UserNameText $color={theme.headerFontColor}>{desc}</UserNameText>
+        <TextWrapPara $color={theme.headerFontColor}>{about}</TextWrapPara>
       </HeaderWrapper>
     </>
   );
@@ -61,13 +53,13 @@ const CustomImage = styled(LazyLoadImage)`
 `;
 
 const UserNameText = styled.h6`
-  color: ${(props) => props.props.headerFontColor};
+  color: ${(props) => props.$color};
   font-weight: bold;
   text-align: center;
 `;
 
 const TextWrapPara = styled.p`
-  color: ${(props) => props.props.headerFontColor};
+  color: ${(props) => props.$color};
   margin: 10px;
   text-align: center;
   width: 50vw;

@@ -22,3 +22,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# PocketBase data (SQLite database + uploads — back this up separately)
+pb/pb_data/
+# Keep the binary tracked (or exclude it if you want to download it fresh)
+pb/pocketbase

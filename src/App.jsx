@@ -1,13 +1,23 @@
-import Footer from "./components/footer/footer";
-import Header from "./components/header/header";
-import Link from "./components/link/link";
+import { Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import Login from "./pages/admin/Login";
+import Dashboard from "./pages/admin/Dashboard";
+import ProtectedRoute from "./components/ProtectedRoute";
+
 const App = () => {
   return (
-    <>
-      <Header />
-      <Link />
-      <Footer />
-    </>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/admin" element={<Login />} />
+      <Route
+        path="/admin/dashboard"
+        element={
+          <ProtectedRoute>
+            <Dashboard />
+          </ProtectedRoute>
+        }
+      />
+    </Routes>
   );
 };
 
