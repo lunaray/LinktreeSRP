@@ -20,10 +20,11 @@ const Home = () => {
   useEffect(() => {
     Promise.all([
       pb.collection("profile").getFirstListItem("").catch(() => null),
-      pb.collection("links").getFullList({ sort: "sort_order,created", filter: "enabled=true" }).catch(() => []),
+      pb.collection("links").getFullList({ sort: "+sort_order" }).catch(() => []),
     ]).then(([profileRecord, linkRecords]) => {
       if (profileRecord) setProfile(profileRecord);
-      setLinks(linkRecords);
+      // filter disabled links client-side to avoid server-side filter syntax issues
+      setLinks(linkRecords.filter((l) => l.enabled !== false));
       setLoading(false);
     });
   }, []);

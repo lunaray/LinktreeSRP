@@ -79,7 +79,7 @@ const LinkEditor = () => {
   const [modal, setModal] = useState(null); // null | "new" | link object
 
   useEffect(() => {
-    pb.collection("links").getFullList({ sort: "sort_order,created" }).then(setLinks);
+    pb.collection("links").getFullList({ sort: "+sort_order" }).then(setLinks).catch(console.error);
   }, []);
 
   const handleSave = (record) => {
